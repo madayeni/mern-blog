@@ -2,6 +2,7 @@ import express from "express";
 import validator from "../validations/signup.js";
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
