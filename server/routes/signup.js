@@ -2,6 +2,7 @@ import express from "express";
 import validator from "../validations/signup.js";
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -21,7 +22,12 @@ router.post("/", async (req, res) => {
     user.password = await bcrypt.hash(user.password, salt);
 
     user = await user.save();
-    res.send(user);
+    const secretKey = process.env.SECRET_KEY;
+    const token = jwt.sign(
+      { _id: user._id, username: user.username, email: user.email },
+      secretKey
+    );
+    res.send(token);
   } catch (error) {
     res.status(500).send(error.message);
     console.log(error);

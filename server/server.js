@@ -5,6 +5,7 @@ import connect from "./db/index.js";
 
 import posts from "./routes/posts.js";
 import signup from "./routes/signup.js";
+import signin from "./routes/signin.js";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use("/api/posts", posts);
 app.use("/api/signup", signup);
+app.use("/api/signin", signin);
 
 app.get("/", (req, res) => {
   res.send("Hello from server!!");
