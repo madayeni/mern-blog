@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./screens/Home";
-import Signin from "./screens/Signin";
-import Signup from "./screens/Signup";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./screens/home/Home";
+import Signin from "./screens/signin/Signin";
+import Signup from "./screens/signup/Signup";
 import Blog from "./screens/Blog";
-import AddBlog from "./screens/AddBlog";
+import AddBlog from "./screens/addblog/AddBlog";
 const App = () => {
   return (
     <BrowserRouter>

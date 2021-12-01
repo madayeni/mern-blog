@@ -1,0 +1,22 @@
+.search-container {
+  background-color: royalblue;
+  height: 80%;
+  border-radius: 10px;
+}
+
+.search-input {
+  height: 32px;
+  padding: 5px;
+  width: 250px;
+}
+
+.search-input:focus {
+  border: 1px royalblue solid;
+}
+
+.btn.search-submit {
+  margin: 0;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+}

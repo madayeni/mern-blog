@@ -1,0 +1,19 @@
+.navbar {
+  width: 100%;
+  background-color: blueviolet;
+  color: white;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter p {
+  margin-right: 10px;
+}
