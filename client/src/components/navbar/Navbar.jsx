@@ -8,7 +8,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="toolbar container">
         <h3>
-          <Link to="/">Logo</Link>
+          <Link to="/">Awesome Blogs</Link>
         </h3>
         <Search />
         <div className="flex filter">

@@ -1,0 +1,63 @@
+.add {
+  width: 90%;
+  background-color: #fff;
+  padding: 20px 10px;
+  margin: 10px auto;
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.add h2 {
+  margin: 20px 0;
+}
+
+.add p.title {
+  font-size: 14px;
+}
+
+.add p.title a {
+  color: royalblue;
+}
+
+.add input {
+  border: 1px solid royalblue;
+  border-radius: 3px;
+  width: 100%;
+  height: 50px;
+  transition: all 0.3s ease;
+  color: black;
+  padding: 20px;
+}
+
+.add textarea {
+  border: 1px solid royalblue;
+  border-radius: 3px;
+  width: 100%;
+  max-width: 100%;
+  min-height: 300px;
+  transition: all 0.3s ease;
+  color: black;
+  padding: 20px;
+}
+
+.add textarea,
+.add input {
+  font-size: 18px;
+}
+
+.add input:focus,
+.add textarea:focus {
+  border-color: blue;
+}
+
+.add .form-control {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.add .btn {
+  display: block;
+  width: 100%;
+}

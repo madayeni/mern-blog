@@ -41,15 +41,15 @@ input {
   border: none;
 }
 
-input:focus {
-  /* outline: none;
-  border: none; */
-}
+/* input:focus {
+   outline: none;
+  border: none; 
+} */
 
 .main-grid {
   display: grid;
   width: 100%;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 20% 50% 30%;
 }
 
 ul {
