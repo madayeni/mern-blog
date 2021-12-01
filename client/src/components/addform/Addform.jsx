@@ -8,17 +8,7 @@ const Addform = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(addPost({ title, body, photo: url, author: "Kasra" }));
-    // try {
-    //   const res = await axios.post("http://localhost:5000/api/posts", {
-    //     title,
-    //     body,
-    //     author: "kasra",
-    //     photo: url,
-    //   });
-    //   console.log(res);
-    // } catch (error) {
-    //   console.log(error);
-    // }
+
     setTitle("");
     setBody("");
     setUrl("");

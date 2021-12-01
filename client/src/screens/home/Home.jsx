@@ -5,7 +5,6 @@ import Sidebar from "../../components/sidebar/Sidebar";
 const Home = () => {
   return (
     <section className="main-grid container">
-      <Sidebar />
       <Bloglist />
       <Sidebar />
     </section>

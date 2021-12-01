@@ -9,20 +9,29 @@ export const addPost = createAsyncThunk(
     try {
       const res = await axios.post(baseURL + "posts", post);
       console.log(res.data);
-      console.log(12);
+
       return { post: res.data };
     } catch (error) {
-      console.log(11);
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-      console.log(13);
-      return rejectWithValue(error);
+      //   console.log(error.response.status);
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
-// export const getPosts = createAsyncThunk("posts/getPosts", async())
+export const getPosts = createAsyncThunk(
+  "posts/getPosts",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(baseURL + "posts");
+      console.log(res.data);
+
+      return { posts: res.data };
+    } catch (error) {
+      //   console.log(error.response.status);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 const initialState = {
   posts: [],
@@ -43,9 +52,21 @@ const postSlice = createSlice({
       state.error = false;
       state.posts.push(action.payload.post);
     },
-    [addPost.rejected]: (state) => {
+    [addPost.rejected]: (state, action) => {
       state.loading = false;
-      state.error = true;
+      state.error = action.payload;
+    },
+    [getPosts.pending]: (state) => {
+      state.loading = true;
+    },
+    [getPosts.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.error = false;
+      state.posts = action.payload.posts;
+    },
+    [getPosts.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     },
   },
 });

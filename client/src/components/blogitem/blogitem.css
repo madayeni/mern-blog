@@ -1,8 +1,30 @@
 .blog {
   width: 90%;
-  height: 200px;
+  height: 220px;
   background-color: white;
   border-radius: 10px;
-  padding: 10px;
   margin: 10px auto;
+  display: grid;
+  grid-template-columns: 35% 65%;
+}
+
+.blog .left,
+.blog .right {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blog .right {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin-left: 20px;
+}
+
+.blog .left img {
+  height: 200px;
+  width: 100%;
 }
