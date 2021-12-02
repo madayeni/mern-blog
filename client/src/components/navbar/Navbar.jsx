@@ -1,9 +1,16 @@
 import "./navbar.css";
 import Search from "../search/Search";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { sortPosts } from "../../redux/postslice";
 
 const Navbar = () => {
   let user = false;
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    dispatch(sortPosts({ sortBy: e.target.value }));
+  };
   return (
     <nav className="navbar">
       <div className="toolbar container">
@@ -13,7 +20,7 @@ const Navbar = () => {
         <Search />
         <div className="flex filter">
           <p>Sort By</p>
-          <select>
+          <select onChange={handleChange}>
             <option value="newest">Newest</option>
             <option value="likes">Likes</option>
             <option value="comments">Comments</option>

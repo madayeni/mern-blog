@@ -8,11 +8,8 @@ export const addPost = createAsyncThunk(
   async (post, { rejectWithValue }) => {
     try {
       const res = await axios.post(baseURL + "posts", post);
-      console.log(res.data);
-
       return { post: res.data };
     } catch (error) {
-      //   console.log(error.response.status);
       return rejectWithValue(error.response.data);
     }
   }
@@ -23,11 +20,8 @@ export const getPosts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await axios.get(baseURL + "posts");
-      console.log(res.data);
-
       return { posts: res.data };
     } catch (error) {
-      //   console.log(error.response.status);
       return rejectWithValue(error.response.data);
     }
   }
@@ -35,6 +29,7 @@ export const getPosts = createAsyncThunk(
 
 const initialState = {
   posts: [],
+  filteredPosts: [],
   error: null,
   loading: null,
 };
@@ -42,7 +37,22 @@ const initialState = {
 const postSlice = createSlice({
   name: "posts",
   initialState,
-  reducers: {},
+  reducers: {
+    sortPosts: (state, action) => {
+      const sortBy = action.payload.sortBy;
+      if (sortBy === "newest") {
+        state.filteredPosts.sort((p1, p2) => p1.title - p2.title);
+      } else if (sortBy === "oldest") {
+        state.filteredPosts.sort((p1, p2) => p2.title - p1.title);
+      }
+    },
+    searchPosts: (state, action) => {
+      const key = action.payload;
+      state.filteredPosts = state.posts.filter((post) =>
+        post.title.includes(key)
+      );
+    },
+  },
   extraReducers: {
     [addPost.pending]: (state) => {
       state.loading = true;
@@ -63,6 +73,7 @@ const postSlice = createSlice({
       state.loading = false;
       state.error = false;
       state.posts = action.payload.posts;
+      state.filteredPosts = action.payload.posts;
     },
     [getPosts.rejected]: (state, action) => {
       state.loading = false;
@@ -70,5 +81,7 @@ const postSlice = createSlice({
     },
   },
 });
+
+export const { sortPosts, searchPosts } = postSlice.actions;
 
 export default postSlice.reducer;

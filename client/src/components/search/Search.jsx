@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { searchPosts } from "../../redux/postslice";
 import "./search.css";
 
 const Search = () => {
   const [value, setValue] = useState("");
+  const dispatch = useDispatch();
+
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(searchPosts(value));
     setValue("");
   };
   return (

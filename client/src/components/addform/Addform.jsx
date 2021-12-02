@@ -2,9 +2,11 @@ import "./addform.css";
 import { useDispatch } from "react-redux";
 import { addPost } from "../../redux/postslice";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Addform = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(addPost({ title, body, photo: url, author: "Kasra" }));
@@ -12,6 +14,7 @@ const Addform = () => {
     setTitle("");
     setBody("");
     setUrl("");
+    history.push("/");
   };
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
