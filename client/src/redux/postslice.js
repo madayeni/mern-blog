@@ -61,7 +61,7 @@ const postSlice = createSlice({
     searchPosts: (state, action) => {
       const key = action.payload;
       state.filteredPosts = state.posts.filter((post) =>
-        post.title.includes(key)
+        post.title.toLowerCase().includes(key)
       );
     },
   },

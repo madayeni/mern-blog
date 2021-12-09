@@ -9,7 +9,7 @@ const Search = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(searchPosts(value));
+    dispatch(searchPosts(value.toLowerCase().trim()));
     setValue("");
   };
   return (
