@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-const baseURL = "http://localhost:5000/api/";
+import { baseURL } from "../api";
+import { sortCriteria, sortString } from "../helper";
 
 export const addPost = createAsyncThunk(
   "posts/addPost",
@@ -39,12 +39,11 @@ const postSlice = createSlice({
   initialState,
   reducers: {
     sortPosts: (state, action) => {
-      const sortBy = action.payload.sortBy;
-      if (sortBy === "newest") {
-        state.filteredPosts.sort((p1, p2) => p1.title - p2.title);
-      } else if (sortBy === "oldest") {
-        state.filteredPosts.sort((p1, p2) => p2.title - p1.title);
-      }
+      const value = action.payload.value;
+      const { sortBy, dir } = sortCriteria(value);
+      state.filteredPosts.sort((p1, p2) =>
+        sortString(p1[sortBy], p2[sortBy], dir)
+      );
     },
     searchPosts: (state, action) => {
       const key = action.payload;

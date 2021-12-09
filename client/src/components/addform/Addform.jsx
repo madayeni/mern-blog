@@ -10,7 +10,6 @@ const Addform = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(addPost({ title, body, photo: url, author: "Kasra" }));
-
     setTitle("");
     setBody("");
     setUrl("");

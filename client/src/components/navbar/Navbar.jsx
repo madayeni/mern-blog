@@ -1,15 +1,18 @@
 import "./navbar.css";
 import Search from "../search/Search";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sortPosts } from "../../redux/postslice";
+import { signout } from "../../redux/usersSlice";
 
 const Navbar = () => {
-  let user = false;
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.users);
   const handleChange = (e) => {
-    dispatch(sortPosts({ sortBy: e.target.value }));
+    dispatch(sortPosts({ value: e.target.value }));
+  };
+  const handleSignout = () => {
+    dispatch(signout());
   };
   return (
     <nav className="navbar">
@@ -27,15 +30,17 @@ const Navbar = () => {
             <option value="oldest">Oldest</option>
           </select>
         </div>
-        {user && (
+        {user.id && (
           <div>
             <Link to="./add" className="btn">
               Write
             </Link>
-            <button className="btn btn-outline">Sign out</button>
+            <button className="btn btn-outline" onClick={handleSignout}>
+              Sign out
+            </button>
           </div>
         )}
-        {!user && (
+        {!user.id && (
           <div>
             <Link to="/signin" className="btn">
               Sign In

@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  const { username, email, password, avatar } = req.body;
+  const { username, email, password } = req.body;
   const { error } = validator.validate(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
