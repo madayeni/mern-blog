@@ -1,18 +1,21 @@
 import "./blogitem.css";
 import moment from "moment";
+import { Link } from "react-router-dom";
 const Blogitem = (props) => {
-  const { photo, title, author, createdAt } = props.post;
+  const { photo, title, author, createdAt, _id } = props.post;
   return (
-    <article className="blog">
-      <div className="left">
-        <img src={photo} alt={title} />
-      </div>
-      <div className="right">
-        <div>{title}</div>
-        <div>{moment(createdAt).format("MMMM Do YYYY, h:mm a")}</div>
-        <div>{author}</div>
-      </div>
-    </article>
+    <Link to={`/posts/${_id}`}>
+      <article className="blog">
+        <div className="left">
+          <img src={photo} alt={title} />
+        </div>
+        <div className="right">
+          <div>{title}</div>
+          <div>{moment(createdAt).format("MMMM Do YYYY, h:mm a")}</div>
+          <div>{author}</div>
+        </div>
+      </article>
+    </Link>
   );
 };
 

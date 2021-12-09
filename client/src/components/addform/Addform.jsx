@@ -1,15 +1,16 @@
 import "./addform.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../../redux/postslice";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 const Addform = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const user = useSelector((state) => state.users);
   const submitHandler = async (e) => {
     e.preventDefault();
-    dispatch(addPost({ title, body, photo: url, author: "Kasra" }));
+    dispatch(addPost({ title, body, photo: url, author: user.username }));
     setTitle("");
     setBody("");
     setUrl("");
@@ -18,6 +19,9 @@ const Addform = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [url, setUrl] = useState("");
+  if (!user.id) {
+    return <Redirect to="/signin" />;
+  }
   return (
     <section className="add">
       <h2>Share what is in your mind...</h2>

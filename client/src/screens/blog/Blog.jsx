@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "../../components/sidebar/Sidebar";
 import SingleBlog from "../../components/singleblog/SingleBlog";
 
-const Home = () => {
+const Blog = () => {
   return (
     <section className="main-grid container">
       <SingleBlog />
@@ -11,4 +11,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Blog;

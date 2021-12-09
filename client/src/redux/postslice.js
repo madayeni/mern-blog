@@ -27,11 +27,24 @@ export const getPosts = createAsyncThunk(
   }
 );
 
+export const getPost = createAsyncThunk(
+  "posts/getPost",
+  async ({ id }, { rejectWithValue }) => {
+    try {
+      const res = await axios.get(baseURL + "posts/" + id);
+      return { post: res.data };
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const initialState = {
   posts: [],
   filteredPosts: [],
   error: null,
   loading: null,
+  curPost: null,
 };
 
 const postSlice = createSlice({
@@ -75,6 +88,18 @@ const postSlice = createSlice({
       state.filteredPosts = action.payload.posts;
     },
     [getPosts.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    [getPost.pending]: (state) => {
+      state.loading = true;
+    },
+    [getPost.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.error = false;
+      state.curPost = action.payload.post;
+    },
+    [getPost.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },

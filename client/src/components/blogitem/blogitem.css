@@ -6,6 +6,8 @@
   margin: 10px auto;
   display: grid;
   grid-template-columns: 35% 65%;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .blog .left,
@@ -27,4 +29,8 @@
 .blog .left img {
   height: 200px;
   width: 100%;
+}
+
+.blog:hover {
+  transform: translateY(-5px);
 }

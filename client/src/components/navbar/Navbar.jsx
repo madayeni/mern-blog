@@ -1,18 +1,22 @@
 import "./navbar.css";
 import Search from "../search/Search";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sortPosts } from "../../redux/postslice";
 import { signout } from "../../redux/usersSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.users);
   const handleChange = (e) => {
     dispatch(sortPosts({ value: e.target.value }));
+    console.log(1);
+    history.push("/");
   };
   const handleSignout = () => {
     dispatch(signout());
+    history.push("/");
   };
   return (
     <nav className="navbar">
