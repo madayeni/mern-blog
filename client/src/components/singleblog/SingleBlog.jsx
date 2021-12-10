@@ -1,3 +1,4 @@
+import "./singleblog.css";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -16,7 +17,7 @@ const SingleBlog = (props) => {
     <div>
       {!post && <h1>Loading...</h1>}
       {post?._id && (
-        <div>
+        <div className="single-blog">
           <img src={post.photo} alt={post.title} />
           <h1>{post.title}</h1>
           <h2>Written by {post.author}</h2>
