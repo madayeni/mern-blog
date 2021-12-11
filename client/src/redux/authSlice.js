@@ -4,7 +4,7 @@ import { baseURL } from "../api";
 import jwtDecode from "jwt-decode";
 
 export const signup = createAsyncThunk(
-  "users/signup",
+  "auth/signup",
   async (user, { rejectWithValue }) => {
     try {
       const res = await axios.post(baseURL + "signup", user);
@@ -17,7 +17,7 @@ export const signup = createAsyncThunk(
 );
 
 export const signin = createAsyncThunk(
-  "users/signin",
+  "auth/signin",
   async (user, { rejectWithValue }) => {
     try {
       const res = await axios.post(baseURL + "signin", user);
@@ -38,8 +38,8 @@ const initialState = {
   id: null,
 };
 
-const usersSlice = createSlice({
-  name: "users",
+const authSlice = createSlice({
+  name: "auth",
   initialState,
   reducers: {
     signout: (state, action) => {
@@ -85,6 +85,6 @@ const usersSlice = createSlice({
   },
 });
 
-export const { signout } = usersSlice.actions;
+export const { signout } = authSlice.actions;
 
-export default usersSlice.reducer;
+export default authSlice.reducer;

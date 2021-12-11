@@ -3,12 +3,12 @@ import Search from "../search/Search";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sortPosts } from "../../redux/postslice";
-import { signout } from "../../redux/usersSlice";
+import { signout } from "../../redux/authSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const user = useSelector((state) => state.users);
+  const user = useSelector((state) => state.auth);
   const handleChange = (e) => {
     dispatch(sortPosts({ value: e.target.value }));
     console.log(1);

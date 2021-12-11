@@ -1,5 +1,7 @@
 import "./toolbar.css";
 
+import { useSelector } from "react-redux";
+
 const Toolbar = () => {
   return (
     <div className="blog-toolbar">

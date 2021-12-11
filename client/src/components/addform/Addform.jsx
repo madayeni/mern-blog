@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../../redux/postslice";
 import { useState } from "react";
 import { useHistory, Redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Addform = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const user = useSelector((state) => state.users);
+  const user = useSelector((state) => state.auth);
   const submitHandler = async (e) => {
     e.preventDefault();
     dispatch(addPost({ title, body, photo: url, author: user.username }));
@@ -20,6 +21,9 @@ const Addform = () => {
   const [body, setBody] = useState("");
   const [url, setUrl] = useState("");
   if (!user.id) {
+    toast("Please sign in First!", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
     return <Redirect to="/signin" />;
   }
   return (

@@ -6,9 +6,12 @@ import Signup from "./screens/signup/Signup";
 import Blog from "./screens/blog/Blog";
 import AddBlog from "./screens/addblog/AddBlog";
 import NotFound from "./screens/not-found/NotFound";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   return (
     <BrowserRouter>
+      <ToastContainer />
       <Navbar />
       <Switch>
         <Route path="/" component={Home} exact />

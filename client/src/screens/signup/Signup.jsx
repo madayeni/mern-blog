@@ -2,14 +2,14 @@ import { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./signup.css";
-import { signup } from "../../redux/usersSlice";
+import { signup } from "../../redux/authSlice";
 
 const Signup = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const user = useSelector((state) => state.users);
+  const user = useSelector((state) => state.auth);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signup({ email, username, password }));

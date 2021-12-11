@@ -2,13 +2,13 @@ import { Link, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import "./signin.css";
-import { signin } from "../../redux/usersSlice";
+import { signin } from "../../redux/authSlice";
 
 const Signin = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.users);
+  const auth = useSelector((state) => state.auth);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signin({ user, password }));
