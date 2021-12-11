@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import connect from "./db/index.js";
-
 import posts from "./routes/posts.js";
 import signup from "./routes/signup.js";
 import signin from "./routes/signin.js";
@@ -26,4 +25,4 @@ app.get("/", (req, res) => {
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`server listening on port ${port}...`));
-// connect();
+connect();
