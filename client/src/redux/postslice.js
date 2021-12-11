@@ -2,12 +2,16 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { baseURL } from "../api";
 import { sortCriteria, sortString } from "../helper";
+import { toast } from "react-toastify";
 
 export const addPost = createAsyncThunk(
   "posts/addPost",
   async (post, { rejectWithValue }) => {
     try {
       const res = await axios.post(baseURL + "posts", post);
+      toast.success("Post added successfully!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return { post: res.data };
     } catch (error) {
       return rejectWithValue(error.response.data);

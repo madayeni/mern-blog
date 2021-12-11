@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { baseURL } from "../api";
 import jwtDecode from "jwt-decode";
+import { toast } from "react-toastify";
 
 export const signup = createAsyncThunk(
   "auth/signup",
@@ -9,8 +10,14 @@ export const signup = createAsyncThunk(
     try {
       const res = await axios.post(baseURL + "signup", user);
       console.log(res.data);
+      toast.success("Welcome!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return { token: res.data };
     } catch (error) {
+      toast.error(error.response.data, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return rejectWithValue(error.response.data);
     }
   }
@@ -22,8 +29,14 @@ export const signin = createAsyncThunk(
     try {
       const res = await axios.post(baseURL + "signin", user);
       console.log(res.data);
+      toast.success("Welcome!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return { token: res.data };
     } catch (error) {
+      toast.error(error.response.data, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return rejectWithValue(error.response.data);
     }
   }
@@ -47,6 +60,9 @@ const authSlice = createSlice({
       state.email = null;
       state.username = null;
       state.id = null;
+      toast.success("Bye!", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     },
   },
   extraReducers: {
