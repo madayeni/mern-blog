@@ -4,7 +4,7 @@ import "./addblog.css";
 
 const AddBlog = () => {
   return (
-    <section className="main-grid">
+    <section className="main-grid container">
       <Addform />
       <Sidebar />
     </section>

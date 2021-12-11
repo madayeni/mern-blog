@@ -14,6 +14,9 @@ export const addPost = createAsyncThunk(
       });
       return { post: res.data };
     } catch (error) {
+      toast.error(error.response.data, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
       return rejectWithValue(error.response.data);
     }
   }
