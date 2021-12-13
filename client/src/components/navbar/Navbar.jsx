@@ -11,7 +11,6 @@ const Navbar = () => {
   const user = useSelector((state) => state.auth);
   const handleChange = (e) => {
     dispatch(sortPosts({ value: e.target.value }));
-    console.log(1);
     history.push("/");
   };
   const handleSignout = () => {
@@ -35,13 +34,14 @@ const Navbar = () => {
           </select>
         </div>
         {user.id && (
-          <div>
-            <Link to="./add" className="btn">
+          <div className="flex">
+            <Link to="/add" className="btn">
               Write
             </Link>
             <button className="btn btn-outline" onClick={handleSignout}>
               Sign out
             </button>
+            <div className="profile">{user.username[0].toUpperCase()}</div>
           </div>
         )}
         {!user.id && (

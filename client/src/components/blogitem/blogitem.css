@@ -1,13 +1,18 @@
 .blog {
-  width: 90%;
   height: 220px;
+  width: 100%;
   background-color: white;
   border-radius: 10px;
-  margin: 10px auto;
+  margin: 15px 0;
   display: grid;
   grid-template-columns: 35% 65%;
   transition: all 0.3s ease;
   cursor: pointer;
+}
+
+.blog-link {
+  display: block;
+  margin: 0 100px;
 }
 
 .blog .left,
@@ -20,6 +25,7 @@
 }
 
 .blog .right {
+  width: calc(100% - 20px);
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
@@ -28,9 +34,11 @@
 
 .blog .left img {
   height: 200px;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
 }
 
 .blog:hover {
   transform: translateY(-5px);
+  border: 1px gray solid;
 }

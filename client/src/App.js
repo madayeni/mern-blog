@@ -8,7 +8,15 @@ import AddBlog from "./screens/addblog/AddBlog";
 import NotFound from "./screens/not-found/NotFound";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { loadUser } from "./redux/authSlice";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
   return (
     <BrowserRouter>
       <ToastContainer />

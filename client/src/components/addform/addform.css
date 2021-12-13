@@ -61,3 +61,7 @@
   display: block;
   width: 100%;
 }
+
+.add .form-control.photo {
+  display: flex;
+}

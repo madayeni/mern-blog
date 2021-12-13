@@ -80,3 +80,42 @@ export const updatePost = async (req, res) => {
     console.log(error);
   }
 };
+
+export const changePost = async (req, res) => {
+  const { type } = req.body;
+  let updatedPost;
+  try {
+    const post = await Post.findById(req.params.id);
+    if (type === "like") {
+      if (!post.likes.includes(req.body.payload)) {
+        updatedPost = await Post.findByIdAndUpdate(
+          req.params.id,
+          {
+            likes: [...post.likes, req.body.payload],
+          },
+          { new: true }
+        );
+      } else {
+        updatedPost = await Post.findByIdAndUpdate(
+          req.params.id,
+          {
+            likes: post.likes.filter((like) => like !== req.body.payload),
+          },
+          { new: true }
+        );
+      }
+    } else if (type === "comment") {
+      updatedPost = await Post.findByIdAndUpdate(
+        req.params.id,
+        {
+          comments: [req.body.payload, ...post.comments],
+        },
+        { new: true }
+      );
+    }
+    res.send(updatedPost);
+  } catch (error) {
+    res.status(500).send(error.message);
+    console.log(error);
+  }
+};

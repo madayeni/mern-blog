@@ -25,3 +25,21 @@
 .filter p {
   margin-right: 10px;
 }
+
+.profile {
+  border-radius: 50%;
+  border: 1px whitesmoke solid;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.profile:hover {
+  background-color: whitesmoke;
+  color: royalblue;
+}

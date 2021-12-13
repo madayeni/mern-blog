@@ -11,11 +11,12 @@ const Bloglist = () => {
   }, [dispatch]);
   const { error, filteredPosts, loading } = useSelector((state) => state.posts);
   return (
-    <article>
+    <article className="blog-list">
       {loading && <div>Loading</div>}
       {error && <div>error</div>}
-      {filteredPosts &&
-        filteredPosts.map((post) => <Blogitem key={post._id} post={post} />)}
+      {filteredPosts?.map((post) => (
+        <Blogitem key={post._id} post={post} />
+      ))}
     </article>
   );
 };

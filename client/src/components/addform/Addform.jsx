@@ -1,17 +1,34 @@
 import "./addform.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../../redux/postslice";
-import { useState } from "react";
+import { addPost, changeEditMode, editPost } from "../../redux/postslice";
+import { useState, useEffect } from "react";
 import { useHistory, Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
+import FileBase64 from "react-file-base64";
 
 const Addform = () => {
   const dispatch = useDispatch();
+  const editMode = useSelector((state) => state.posts.editMode);
   const history = useHistory();
   const user = useSelector((state) => state.auth);
+  const curPost = useSelector((state) => state.posts.curPost);
   const submitHandler = async (e) => {
     e.preventDefault();
-    dispatch(addPost({ title, body, photo: url, author: user.username }));
+    if (!editMode) {
+      dispatch(addPost({ title, body, photo: url, author: user.username }));
+    } else {
+      dispatch(
+        editPost({
+          id: curPost?._id,
+          title,
+          body,
+          photo: url,
+          author: user.username,
+        })
+      );
+      dispatch(changeEditMode(false));
+    }
+
     setTitle("");
     setBody("");
     setUrl("");
@@ -20,6 +37,15 @@ const Addform = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    if (editMode) {
+      setTitle(curPost?.title);
+      setBody(curPost?.body);
+      setUrl(curPost?.photo);
+    }
+  }, [curPost, editMode]);
+
   if (!user.id) {
     toast("Please sign in First!", {
       position: toast.POSITION.BOTTOM_RIGHT,
@@ -28,7 +54,9 @@ const Addform = () => {
   }
   return (
     <section className="add">
-      <h2>Share what is in your mind...</h2>
+      {!editMode && <h2>Share what is in your mind...</h2>}
+      {editMode && <h2>Edit your post here...</h2>}
+
       <form className="flex flex-c" onSubmit={submitHandler}>
         <div className="form-control">
           <label htmlFor="title">Title</label>
@@ -50,7 +78,7 @@ const Addform = () => {
           ></textarea>
         </div>
         <div className="form-control">
-          <label htmlFor="url">Your Pic's URL</label>
+          <label htmlFor="url">Enter your pic's URL or upload a photo</label>
           <input
             type="text"
             id="url"
@@ -59,9 +87,14 @@ const Addform = () => {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
+          <FileBase64
+            multiple={false}
+            onDone={({ base64 }) => setUrl(base64)}
+          />
         </div>
+
         <button type="submit" className="btn">
-          Post
+          {editMode ? "Update" : "Post"}
         </button>
       </form>
     </section>

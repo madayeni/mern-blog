@@ -1,17 +1,18 @@
-import validator from "../validations/signin.js";
+import signupValidator from "../validations/signup.js";
+import signinValidator from "../validations/signin.js";
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const signin = async (req, res) => {
   let { user, password } = req.body;
-  const { error } = validator.validate(req.body);
+  const { error } = signinValidator.validate(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
   try {
-    let username = await User.findOne({ username: user });
-    let email = await User.findOne({ email: user });
+    let username = await User.findOne({ username: user }).select("+password");
+    let email = await User.findOne({ email: user }).select("+password");
     if (!email && !username) {
       return res.status(400).send("Wrong credentials");
     }
@@ -34,7 +35,7 @@ export const signin = async (req, res) => {
 
 export const signup = async (req, res) => {
   const { username, email, password } = req.body;
-  const { error } = validator.validate(req.body);
+  const { error } = signupValidator.validate(req.body);
   if (error) {
     return res.status(400).send(error.details[0].message);
   }

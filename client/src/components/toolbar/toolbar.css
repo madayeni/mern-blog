@@ -14,9 +14,8 @@
   align-items: center;
   margin: 10px 0;
   padding: 10px;
-  cursor: pointer;
   transition: all 0.3s ease;
-  color: red;
+  color: purple;
 }
 
 .blog-toolbar form {
@@ -39,6 +38,7 @@
   padding: 10px;
   border: 1px blue solid;
   border-radius: 4px;
+  width: 100%;
 }
 
 .blog-toolbar i {
@@ -49,4 +49,42 @@
   display: block;
   width: 100%;
   margin-top: 10px;
+}
+
+.blog-toolbar .edit .btn {
+  color: red;
+  background-color: transparent;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  align-items: center;
+}
+
+.blog-toolbar .comments ul {
+  height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: beige;
+}
+
+.blog-toolbar .comments ul li {
+  border-bottom: 1px solid gray;
+  padding: 5px 0;
+}
+.blog-toolbar .comments ul li:first-child {
+  border-bottom: 3px solid gray;
+  text-align: center;
+}
+
+.edit-post i {
+  cursor: pointer;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.edit-post i:hover {
+  background-color: burlywood;
 }

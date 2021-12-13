@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Blogitem = (props) => {
   const { photo, title, author, createdAt, _id } = props.post;
   return (
-    <Link to={`/posts/${_id}`}>
+    <Link to={`/posts/${_id}`} className="blog-link">
       <article className="blog">
         <div className="left">
           <img src={photo} alt={title} />
