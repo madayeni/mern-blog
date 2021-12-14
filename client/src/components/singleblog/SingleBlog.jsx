@@ -19,9 +19,9 @@ const SingleBlog = (props) => {
       {post?._id && (
         <div className="single-blog">
           <img src={post.photo} alt={post.title} />
-          <h1>{post.title}</h1>
-          <h2>Written by {post.author}</h2>
-          <h3>{moment(post.createdAt).fromNow()}</h3>
+          <h1 className="blog-title">{post.title}</h1>
+          <h2 className="blog-author">Written by {post.author}</h2>
+          <h3 className="blog-date">{moment(post.createdAt).fromNow()}</h3>
           <p>{post.body}</p>
         </div>
       )}

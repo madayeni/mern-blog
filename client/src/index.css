@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -102,4 +107,28 @@ select {
 .btn.btn-outline {
   background-color: transparent;
   border: 1px white solid;
+}
+
+.blog-title {
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.blog-date {
+  color: gray;
+  font-size: 0.8em;
+}
+
+.blog-author {
+  font-size: 0.9em;
+}
+
+@media screen and (max-width: 768px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+  .main-grid > * {
+    width: 100%;
+  }
 }
