@@ -60,3 +60,10 @@
 .blog .blog-likes-comments .blog-comments {
   color: rgb(44, 126, 151);
 }
+
+@media screen and (max-width: 768px) {
+  .blog-link {
+    margin: 0 10px;
+    max-width: 100%;
+  }
+}
